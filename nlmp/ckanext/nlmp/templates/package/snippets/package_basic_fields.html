@@ -1,0 +1,5 @@
+{% ckan_extends %}
+
+{% block package_basic_fields_custom %}
+  {{ form.input('experiment_method', label=_('Experiment Method'), id='field-experiment_method', placeholder=_('Method'), value=data.experiment_method, error=errors.experiment_method, classes=['control-medium']) }}
+{% endblock %}

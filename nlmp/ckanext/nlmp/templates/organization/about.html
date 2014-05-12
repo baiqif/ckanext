@@ -1,0 +1,23 @@
+{% extends "organization/read_base.html" %}
+
+
+{% block subtitle %}{{ _('About') }} - {{ super() }}{% endblock %}
+
+{% block primary_content_inner %}
+  <h1>{% block page_heading %}{{ c.group_dict.display_name }}{% endblock %}</h1>
+  {% block organization_description %}
+    {% if c.group_dict.description %}
+      {{ h.render_markdown(c.group_dict.description) }}
+    {% endif %}
+
+  {% endblock %}
+  {% block organization_extras %}
+    {% snippet 'snippets/additional_info.html', extras = h.sorted_extras(c.group_dict.extras) %}
+  {% endblock %}
+{% endblock %}
+
+{% block custom_fields %}
+
+ {{ form.input('project_leader', label=_('Project Leader'), id='field-project_leader', placeholder=_('Leader'), value=data.project_leader, error=errors.project_leader, classes=['control-medium']) }}
+ {{ super() }}
+{% endblock %}
